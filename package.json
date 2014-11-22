@@ -1,0 +1,25 @@
+{
+    "name": "doa",
+    "description": "",
+    "version": "0.1.0",
+    "author": "Nicolas Dufreche <n.dufreche@gmail.com>",
+    "homepage": "https://ndufreche.github.com/doa",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ndufreche/doa.git"
+    },
+    "devDependencies": {
+        "es5-shim": "*",
+        "grunt": "*",
+        "function-bind": "*",
+        "grunt-jslint": "*",
+        "grunt-contrib-jshint": "*",
+        "grunt-contrib-uglify": "*",
+        "grunt-contrib-concat": "*",
+        "grunt-contrib-watch": "*",
+        "grunt-contrib-jasmine": "*",
+        "grunt-template-jasmine-istanbul": "*",
+        "grunt-istanbul-coverage": "*",
+        "grunt-template-jasmine-requirejs": "*"
+    }
+}

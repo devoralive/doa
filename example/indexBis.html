@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>doa</title>
+</head>
+<body>
+    <script type="text/javascript" src="../bower_components/requirejs/require.js"></script>
+    <script type="text/javascript" src="require.config.js"></script>
+    <script type="text/javascript">
+        require(['doa/object', 'specs/object.mock'], function (test, mock) {
+
+            var foo = new test(mock),
+
+                bar = new foo('test');
+
+            console.log('bar', bar);
+            // console.log('bar.class.param', bar.class.param);
+            // console.log('getParam', bar.getParam);
+            // console.log('getParam()', bar.getParam());
+            // console.log('setParam', bar.setParam('slug'));
+            // console.log('getParam()', bar.getParam());
+            // console.log('bar.class.param', bar.param);
+        });
+    </script>
+</body>
+</html>
