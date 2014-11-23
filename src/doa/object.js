@@ -1,7 +1,7 @@
 define(function () {
     'use strict';
 
-    var keywords = ['construct', 'implement', 'extend'],
+    var keywords = ['construct', 'interfaces', 'extend'],
 
         bindFunction = function (object, function_name) {
             object[function_name] = (function () {
@@ -19,8 +19,24 @@ define(function () {
             }(object, function_name));
         },
 
-        implementObjects = function () {
-            return;
+        checkInterface = function (object, interface_name, implemantation) {
+            for (var func in implemantation) {
+                if (implemantation.hasOwnProperty(func) && object.hasOwnProperty(func) && 'function' === typeof implemantation[func]) {
+                    if (implemantation[func].length !== object[func].length) {
+                        throw 'InterfacesExepction ' + interface_name + ': object ' + object.getClassName() + ' function ' + func + ' bad parameters number.';
+                    }
+                } else if ('function' === typeof implemantation[func]){
+                    throw 'InterfacesExepction ' + interface_name + ': object' + object.getClassName() + ' does\'nt implement function ' + func + '.';
+                }
+            }
+        },
+
+        checkInterfaces = function (object, interfaces) {
+            for (var interface_name in interfaces) {
+                if (interfaces.hasOwnProperty(interface_name)) {
+                    checkInterface(object, interface_name, interfaces[interface_name]);
+                }
+            }
         },
 
         extendObjects = function () {
@@ -31,7 +47,7 @@ define(function () {
             if (-1 === keywords.indexOf(property) && 'function' === typeof object.class.__proto__[property]) {
                 bindFunction(object, property);
             } else if (property === keywords[1]) {
-                implementObjects();
+                checkInterfaces(object.class.__proto__, object.class.__proto__[property]);
             } else if (property === keywords[2]) {
                 extendObjects();
             }
@@ -55,7 +71,7 @@ define(function () {
             }
         },
 
-        objectConstructor = function (name, object) {
+        objectConstructor = function (name, object, dependencies) {
             var instance = (undefined === object) ? name : object,
                 class_name = (undefined === object) ? 'anonymous' : name,
 
@@ -74,7 +90,11 @@ define(function () {
                     return this;
                 };
 
-            constructor.getClassName = function () {
+            if (dependencies && dependencies.interfaces) {
+                instance.interfaces = dependencies.interfaces;
+            }
+
+            instance.getClassName = function () {
                 return class_name;
             };
 

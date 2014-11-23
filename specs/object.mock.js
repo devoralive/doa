@@ -1,4 +1,4 @@
-define({
+define(['doa!implement:specs/interface.mock'], {
     param: undefined,
 
     paramOnConstruct: '',
