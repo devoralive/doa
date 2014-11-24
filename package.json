@@ -10,7 +10,6 @@
     },
     "devDependencies": {
         "grunt": "*",
-        "es5-shim": "*",
         "grunt-jslint": "*",
         "grunt-contrib-jshint": "*",
         "grunt-contrib-jasmine": "*",

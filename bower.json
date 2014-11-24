@@ -22,5 +22,8 @@
     ],
     "dependencies": {
         "requirejs": "*"
+    },
+    "devDependencies": { 
+        "es5-shim": "*"
     }
 }
