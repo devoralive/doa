@@ -3,13 +3,13 @@ define(['require'], function (require) {
 
     return {
         getDependencies: function (config) {
-            var depenedency = {};
+            var dependencies = {};
             if (config.bundles.doa && config.bundles.doa.interfaces) {
-                depenedency.interfaces = config.bundles.doa.interfaces;
+                dependency.interfaces = config.bundles.doa.interfaces;
                 delete config.bundles.doa.interfaces;
             }
 
-            return depenedency
+            return dependencies
         },
 
         init: function (doa_dep_name, dep_name, dep, config) {
@@ -21,7 +21,7 @@ define(['require'], function (require) {
             } else if ('implement' === doa_dep_name) {
                 config.bundles.doa = config.bundles.doa || {};
                 config.bundles.doa.interfaces = config.bundles.doa.interfaces || {};
-                
+
                 config.bundles.doa.interfaces[dep_name] = dep;
             }
         },
@@ -33,9 +33,9 @@ define(['require'], function (require) {
                 self = this;
 
             req([dep_name, 'doa/' + doa_dep_name], function (dep) {
-                var depenedency = self.init(doa_dep_name, dep_name, dep, config);
+                var result = self.init(doa_dep_name, dep_name, dep, config);
 
-                onload(depenedency);
+                onload(result);
             });
         }
     };
