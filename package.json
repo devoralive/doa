@@ -1,12 +1,12 @@
 {
     "name": "doa",
     "description": "",
-    "version": "0.1.0",
+    "version": "dev",
     "author": "Nicolas Dufreche <n.dufreche@gmail.com>",
-    "homepage": "https://ndufreche.github.com/doa",
+    "homepage": "https://github.com/devoralive/doa",
     "repository": {
         "type": "git",
-        "url": "https://github.com/ndufreche/doa.git"
+        "url": "https://github.com/devoralive/doa.git"
     },
     "devDependencies": {
         "es5-shim": "*",

@@ -1,7 +1,7 @@
 {
     "name": "doa",
-    "version": "0.1.0",
-    "homepage": "https://ndufreche.github.com/doa",
+    "version": "dev",
+    "homepage": "https://github.com/devoralive/doa",
     "authors": [
         "Nicolas Dufreche <n.dufreche@gmail.com>"
     ],
