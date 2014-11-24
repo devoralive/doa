@@ -1,6 +1,6 @@
 # doa
 
-[![GitHub version](https://badge.fury.io/gh/devoralive%2Fdoa.svg)](http://badge.fury.io/gh/devoralive%2Fdoa)
+[![GitHub version](https://badge.fury.io/gh/devoralive%2Fdoa.svg)](http://badge.fury.io/gh/devoralive%2Fdoa) [![Code Climate](https://codeclimate.com/github/devoralive/doa/badges/gpa.svg)](https://codeclimate.com/github/devoralive/doa)
 
 JavaScript class library based on requirejs.
 
