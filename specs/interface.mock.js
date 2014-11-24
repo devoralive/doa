@@ -6,6 +6,6 @@ define({
 
     setParam: function (param) {
         'use strict';
-        return;
+        return param;
     }
 });

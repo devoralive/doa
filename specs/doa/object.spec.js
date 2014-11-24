@@ -2,7 +2,9 @@ define(['doa/object', 'specs/object.mock', 'es5shim/es5-shim'], function (DoaObj
     'use strict';
 
     var ObjectConstructor = new DoaObject('specs/object.mock', Mock),
+
         Instance = new ObjectConstructor('test on construct'),
+
         InstanceTwo = new ObjectConstructor('test on other construct');
 
     describe('Object Spec', function () {
@@ -15,6 +17,7 @@ define(['doa/object', 'specs/object.mock', 'es5shim/es5-shim'], function (DoaObj
             expect(Instance.param).toBeUndefined();
             expect(Instance.class.paramOnConstruct).toBe('test on construct');
             expect(InstanceTwo.class.paramOnConstruct).toBe('test on other construct');
+            expect(Instance !== InstanceTwo).toBe(true);
         });
 
         it('Check function parsing', function () {
