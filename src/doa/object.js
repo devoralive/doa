@@ -1,7 +1,7 @@
 define(function () {
     'use strict';
 
-    var keywords = ['construct', 'interfaces', 'extend'],
+    var keywords = ['construct', 'extend', 'interfaces'],
 
         bindFunction = function (object, function_name) {
             object[function_name] = (function () {
@@ -54,10 +54,6 @@ define(function () {
         parseProperty = function (object, property) {
             if (-1 === keywords.indexOf(property) && 'function' === typeof Object.getPrototypeOf(object.class)[property]) {
                 bindFunction(object, property);
-            } else if (property === keywords[1]) {
-                checkInterfaces(Object.getPrototypeOf(object.class), Object.getPrototypeOf(object.class)[property]);
-            } else if (property === keywords[2]) {
-                extendObjects();
             }
         },
 
@@ -67,6 +63,11 @@ define(function () {
                 if (Object.getPrototypeOf(object.class).hasOwnProperty(property)) {
                     parseProperty(object, property);
                 }
+            }
+            if (property === keywords[1]) {
+                extendObjects();
+            } else if (Object.getPrototypeOf(object.class).hasOwnProperty(keywords[2])) {
+                checkInterfaces(object, Object.getPrototypeOf(object.class)[keywords[2]]);
             }
         },
 

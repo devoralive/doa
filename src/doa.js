@@ -1,6 +1,12 @@
 define(['require', 'doa/object'], function (require) {
     'use strict';
 
+    var matches = {
+        implement: 'interfaces',
+        extend: 'extend',
+        trait: 'trait'
+    };
+
     return {
         getDependencies: function (config) {
             var dependencies = {};
@@ -19,11 +25,12 @@ define(['require', 'doa/object'], function (require) {
                 DoaDep = require('doa/object');
                 return new DoaDep(dep_name, dep, this.getDependencies(config));
             }
-            if ('implement' === doa_dep_name) {
-                config.doa.interfaces = config.doa.interfaces || {};
+            if ('implement' === doa_dep_name || 'extend' === doa_dep_name) {
+                config.doa[matches[doa_dep_name]] = config.doa[matches[doa_dep_name]] || {};
 
-                config.doa.interfaces[dep_name] = dep;
+                config.doa[matches[doa_dep_name]][dep_name] = dep;
             }
+            return dep;
         },
 
         load: function (namespace, req, onload, config) {
