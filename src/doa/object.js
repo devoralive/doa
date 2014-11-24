@@ -15,24 +15,32 @@ define(function () {
                         return this[func_name].bind(this);
                     };
 
-                return callback.call(inst.class.__proto__, args);
+                return callback.call(Object.getPrototypeOf(inst.class), args);
             }(object, function_name));
         },
 
+        checkFunctionInterface = function (object, implemantation, interface_name, func_name) {
+            if (object.hasOwnProperty(func_name)) {
+                if (implemantation[func_name].length !== object[func_name].length) {
+                    throw 'InterfacesExepction ' + interface_name + ': object ' + object.getClassName() + ' function ' + func_name + ' bad parameters number.';
+                }
+            } else {
+                throw 'InterfacesExepction ' + interface_name + ': object' + object.getClassName() + ' does\'nt implement function ' + func_name + '.';
+            }
+        },
+
         checkInterface = function (object, interface_name, implemantation) {
-            for (var func in implemantation) {
-                if (implemantation.hasOwnProperty(func) && object.hasOwnProperty(func) && 'function' === typeof implemantation[func]) {
-                    if (implemantation[func].length !== object[func].length) {
-                        throw 'InterfacesExepction ' + interface_name + ': object ' + object.getClassName() + ' function ' + func + ' bad parameters number.';
-                    }
-                } else if ('function' === typeof implemantation[func]){
-                    throw 'InterfacesExepction ' + interface_name + ': object' + object.getClassName() + ' does\'nt implement function ' + func + '.';
+            var func_name;
+            for (func_name in implemantation) {
+                if (implemantation.hasOwnProperty(func_name) && 'function' === typeof implemantation[func_name]) {
+                    checkFunctionInterface(object, implemantation, interface_name, func_name);
                 }
             }
         },
 
         checkInterfaces = function (object, interfaces) {
-            for (var interface_name in interfaces) {
+            var interface_name;
+            for (interface_name in interfaces) {
                 if (interfaces.hasOwnProperty(interface_name)) {
                     checkInterface(object, interface_name, interfaces[interface_name]);
                 }
@@ -44,28 +52,19 @@ define(function () {
         },
 
         parseProperty = function (object, property) {
-            if (-1 === keywords.indexOf(property) && 'function' === typeof object.class.__proto__[property]) {
+            if (-1 === keywords.indexOf(property) && 'function' === typeof Object.getPrototypeOf(object.class)[property]) {
                 bindFunction(object, property);
             } else if (property === keywords[1]) {
-                checkInterfaces(object.class.__proto__, object.class.__proto__[property]);
+                checkInterfaces(Object.getPrototypeOf(object.class), Object.getPrototypeOf(object.class)[property]);
             } else if (property === keywords[2]) {
                 extendObjects();
             }
         },
 
-        clone = function (object) {
-            var Clone = function () {
-                return;
-            };
-
-            Clone.prototype = object;
-            return new Clone();
-        },
-
         parseObject = function (object) {
             var property;
-            for (property in object.class.__proto__) {
-                if (object.class.__proto__.hasOwnProperty(property)) {
+            for (property in Object.getPrototypeOf(object.class)) {
+                if (Object.getPrototypeOf(object.class).hasOwnProperty(property)) {
                     parseProperty(object, property);
                 }
             }
@@ -76,16 +75,16 @@ define(function () {
                 class_name = (undefined === object) ? 'anonymous' : name,
 
                 constructor = function () {
-                    this.class = clone(instance);
+                    this.class = Object.create(instance);
                     parseObject(this);
 
-                    if (!this.class.__proto__.hasOwnProperty(keywords[0])) {
-                        this.class.__proto__.construct = function () {
+                    if (!Object.getPrototypeOf(this.class).hasOwnProperty(keywords[0])) {
+                        Object.getPrototypeOf(this.class).construct = function () {
                             return instance;
                         };
                     }
 
-                    this.class.__proto__.construct.apply(this.class, arguments);
+                    Object.getPrototypeOf(this.class).construct.apply(this.class, arguments);
 
                     return this;
                 };

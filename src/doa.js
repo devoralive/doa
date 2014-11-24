@@ -1,28 +1,28 @@
-define(['require'], function (require) {
+define(['require', 'doa/object'], function (require) {
     'use strict';
 
     return {
         getDependencies: function (config) {
             var dependencies = {};
-            if (config.bundles.doa && config.bundles.doa.interfaces) {
-                dependency.interfaces = config.bundles.doa.interfaces;
-                delete config.bundles.doa.interfaces;
+            if (config.doa.interfaces) {
+                dependencies.interfaces = config.doa.interfaces;
+                delete config.doa.interfaces;
             }
 
-            return dependencies
+            return dependencies;
         },
 
         init: function (doa_dep_name, dep_name, dep, config) {
             var DoaDep;
 
             if ('object' === doa_dep_name) {
-                DoaDep = require('doa/' + doa_dep_name);
+                DoaDep = require('doa/object');
                 return new DoaDep(dep_name, dep, this.getDependencies(config));
-            } else if ('implement' === doa_dep_name) {
-                config.bundles.doa = config.bundles.doa || {};
-                config.bundles.doa.interfaces = config.bundles.doa.interfaces || {};
+            }
+            if ('implement' === doa_dep_name) {
+                config.doa.interfaces = config.doa.interfaces || {};
 
-                config.bundles.doa.interfaces[dep_name] = dep;
+                config.doa.interfaces[dep_name] = dep;
             }
         },
 
@@ -32,7 +32,8 @@ define(['require'], function (require) {
                 dep_name = parts.shift(),
                 self = this;
 
-            req([dep_name, 'doa/' + doa_dep_name], function (dep) {
+            config.doa = config.doa || {};
+            req([dep_name], function (dep) {
                 var result = self.init(doa_dep_name, dep_name, dep, config);
 
                 onload(result);
