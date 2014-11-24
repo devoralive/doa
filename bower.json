@@ -17,8 +17,9 @@
         "node_modules",
         "bower_components",
         "specs",
-        "speedtest",
-        "example"
+        "example",
+        "Gruntfile.js",
+        "package.json"
     ],
     "dependencies": {
         "requirejs": "*"
