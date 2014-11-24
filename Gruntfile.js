@@ -12,8 +12,17 @@ module.exports = function (grunt) {
         },
 
         jslint: {
-            default: {
-                src: ['Gruntfile.js', 'src/**/*.js', 'specs/**/*.js'],
+            grunt: {
+                src: ['Gruntfile.js'],
+                directives: {
+                    predef: [
+                        'module',
+                        'require'
+                    ]
+                }
+            },
+            specs: {
+                src: ['specs/**/*.js'],
                 directives: {
                     node: true,
                     nomen: true,
@@ -22,9 +31,12 @@ module.exports = function (grunt) {
                         'require',
                         'it',
                         'expect',
+                        '__dirname',
                         'describe',
+                        'xdescribe',
                         'spyOn',
                         'jasmine',
+                        'sessionStorage',
                         'window',
                         'before',
                         'beforeEach',
@@ -32,6 +44,16 @@ module.exports = function (grunt) {
                         'afterEach',
                         'xit',
                         'xdescribe'
+                    ]
+                }
+            },
+            sources: {
+                src: ['src/**/*.js'],
+                directives: {
+                    browser: true,
+                    predef: [
+                        'define',
+                        'require'
                     ]
                 }
             }
@@ -92,5 +114,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-istanbul-coverage');
 
-    grunt.registerTask('test', ['jshint', 'jasmine:test', 'concat']);
+    grunt.registerTask('test', ['jshint', 'jslint', 'jasmine:coverage']);
 };
