@@ -1,4 +1,4 @@
-define(['doa/interface'], function (doa_interface) {
+define(function () {
     'use strict';
 
     var keywords = ['construct', 'extend', 'interfaces'],
@@ -39,7 +39,9 @@ define(['doa/interface'], function (doa_interface) {
             if (property === keywords[1]) {
                 extendObjects();
             } else if (Object.getPrototypeOf(object.class).hasOwnProperty(keywords[2])) {
-                doa_interface(object, Object.getPrototypeOf(object.class)[keywords[2]]);
+                require(['doa/interface'], function (doa_interface) {
+                    doa_interface(object, Object.getPrototypeOf(object.class)[keywords[2]]);
+                });
             }
         },
 
