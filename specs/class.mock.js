@@ -1,4 +1,4 @@
-define(['doa!implement:specs/interface.mock'], {
+define(['doa!extend:specs/abstract.mock', 'doa!implement:specs/interface.mock'], {
     param: undefined,
 
     paramOnConstruct: '',
@@ -11,6 +11,11 @@ define(['doa!implement:specs/interface.mock'], {
     getParam: function () {
         'use strict';
         return this.param;
+    },
+
+    getAbstractParam: function () {
+        'use strict';
+        return this.parent.param;
     },
 
     setParam: function (param) {

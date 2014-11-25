@@ -14,6 +14,10 @@ define(['require', 'doa/class'], function (require) {
                 dependencies.interfaces = config.doa.interfaces;
                 delete config.doa.interfaces;
             }
+            if (config.doa.extend) {
+                dependencies.extend = config.doa.extend;
+                delete config.doa.extend;
+            }
 
             return dependencies;
         },
