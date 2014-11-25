@@ -8,4 +8,4 @@ before_install:
 install:
     - npm install --save-dev
     - bower install
-script: grunt test --verbose
+script: grunt test
