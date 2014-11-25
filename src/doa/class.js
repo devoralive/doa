@@ -1,4 +1,4 @@
-define(function () {
+define(['doa/interface'], function (doa_interface) {
     'use strict';
 
     var keywords = ['construct', 'extend', 'interfaces'],
@@ -17,34 +17,6 @@ define(function () {
 
                 return callback.call(Object.getPrototypeOf(inst.class), args);
             }(object, function_name));
-        },
-
-        checkFunctionInterface = function (object, implemantation, interface_name, func_name) {
-            if (object.hasOwnProperty(func_name)) {
-                if (implemantation[func_name].length !== object[func_name].length) {
-                    throw 'InterfacesExepction ' + interface_name + ': object ' + object.getClassName() + ' function ' + func_name + ' bad parameters number.';
-                }
-            } else {
-                throw 'InterfacesExepction ' + interface_name + ': object' + object.getClassName() + ' does\'nt implement function ' + func_name + '.';
-            }
-        },
-
-        checkInterface = function (object, interface_name, implemantation) {
-            var func_name;
-            for (func_name in implemantation) {
-                if (implemantation.hasOwnProperty(func_name) && 'function' === typeof implemantation[func_name]) {
-                    checkFunctionInterface(object, implemantation, interface_name, func_name);
-                }
-            }
-        },
-
-        checkInterfaces = function (object, interfaces) {
-            var interface_name;
-            for (interface_name in interfaces) {
-                if (interfaces.hasOwnProperty(interface_name)) {
-                    checkInterface(object, interface_name, interfaces[interface_name]);
-                }
-            }
         },
 
         extendObjects = function () {
@@ -67,7 +39,7 @@ define(function () {
             if (property === keywords[1]) {
                 extendObjects();
             } else if (Object.getPrototypeOf(object.class).hasOwnProperty(keywords[2])) {
-                checkInterfaces(object, Object.getPrototypeOf(object.class)[keywords[2]]);
+                doa_interface(object, Object.getPrototypeOf(object.class)[keywords[2]]);
             }
         },
 
@@ -85,6 +57,13 @@ define(function () {
                         };
                     }
 
+                    Object.defineProperty(this, 'class_name', {
+                        value: class_name,
+                        enumerable: false,
+                        writable: false,
+                        configurable: false
+                    });
+
                     Object.getPrototypeOf(this.class).construct.apply(this.class, arguments);
 
                     return this;
@@ -93,10 +72,6 @@ define(function () {
             if (dependencies && dependencies.interfaces) {
                 instance.interfaces = dependencies.interfaces;
             }
-
-            instance.getClassName = function () {
-                return class_name;
-            };
 
             return constructor.bind(instance);
         };

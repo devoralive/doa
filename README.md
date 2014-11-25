@@ -31,7 +31,7 @@ define({
 
 **Object requirement :**
 ```Javascript
-require(['doa!object:your/object'], function (YourObject) {
+require(['doa!class:your/object'], function (YourObject) {
 	var myObjectInstance = new YourObject('contruct', 'params');
 });
 ```
