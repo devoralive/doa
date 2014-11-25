@@ -7,7 +7,7 @@ define(function () {
                     throw interface_name + ' exception: object ' + object.class_name + ' to much parameters for function ' + func_name + '.';
                 }
             } else {
-                throw interface_name + ' exception: object' + object.class_name + ' does\'nt implement function ' + func_name + '.';
+                throw interface_name + ' exception: object ' + object.class_name + ' does\'nt implement function ' + func_name + '.';
             }
         },
 
