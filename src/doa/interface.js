@@ -4,10 +4,10 @@ define(function () {
     var checkFunctionInterface = function (object, implemantation, interface_name, func_name) {
             if (object.hasOwnProperty(func_name)) {
                 if (implemantation[func_name].length < object[func_name].length) {
-                    throw interface_name + ' exception: object ' + object.getClassName() + ' to much parameters for function ' + func_name + '.';
+                    throw interface_name + ' exception: object ' + object.class_name + ' to much parameters for function ' + func_name + '.';
                 }
             } else {
-                throw interface_name + ' exception: object' + object.getClassName() + ' does\'nt implement function ' + func_name + '.';
+                throw interface_name + ' exception: object' + object.class_name + ' does\'nt implement function ' + func_name + '.';
             }
         },
 
