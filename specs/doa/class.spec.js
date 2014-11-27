@@ -30,6 +30,7 @@ define(['doa/class', 'specs/class.mock', 'es5shim/es5-shim'], function (DoaClass
 
             Instance.setParam('test');
             expect(Instance.getParam()).toBe('test');
+            expect(InstanceTwo.getParam()).toBe(undefined);
         });
     });
 });
