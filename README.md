@@ -59,3 +59,37 @@ define(['doa!trait:your/trait'], {
 	/* comming soon not implemented yet */
 });
 ```
+
+###Project installation :
+
+**Install nodejs and npm**
+
+http://nodejs.org/
+
+
+**Install grunt-cli and bower**
+
+```
+npm install -g grunt-cli bower
+```
+
+**Install node dependencies**
+```
+npm install --save-dev
+```
+
+**Download bower dependenies**
+```
+bower install --dev
+```
+
+###Grunt commands :
+**Checking the code**
+```
+grunt test
+```
+**Run only the specs with coverage**
+```
+grunt jasmine:coverage
+```
+the default jasmine action doesn't work actualy, use only coverage action
