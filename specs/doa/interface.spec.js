@@ -15,7 +15,7 @@ define(['doa/interface', 'specs/interface.mock', 'es5shim/es5-shim'], function (
                 doa_interface({class_name :  'class_name'}, {MockInterface: MockInterface});
                 expect('Exception was raising').toBe(true);
             } catch (e) {
-                expect(e).toBe('MockInterface' + ' exception: object ' + 'class_name' + ' does\'nt implement function ' + 'getParam' + '.');
+                expect(e).toBe('MockInterface' + ' exception: object ' + 'class_name' + ' doesn\'t implement function ' + 'getParam' + '.');
             }
         });
 
