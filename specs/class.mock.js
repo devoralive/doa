@@ -15,7 +15,7 @@ define(['doa!extend:specs/abstract.mock', 'doa!implement:specs/interface.mock'],
 
     getAbstractParam: function () {
         'use strict';
-        return this.parent.param;
+        return this.parent.abstract_param;
     },
 
     setParam: function (param) {

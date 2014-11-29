@@ -1,8 +1,8 @@
 define({
-    abstractparam: undefined,
+    abstract_param: undefined,
 
     setAbstractParam: function (param) {
         'use strict';
-        this.abstractparam = param;
+        this.abstract_param = param;
     }
 });
