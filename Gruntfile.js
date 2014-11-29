@@ -91,19 +91,10 @@ module.exports = function (grunt) {
                 }
             }
         },
-
-        coverage: {
-            default: {
-                options: {
-                    thresholds: {
-                        'statements': 90,
-                        'branches': 90,
-                        'lines': 90,
-                        'functions': 90
-                    },
-                    dir: 'coverage',
-                    root: 'specs'
-                }
+        coveralls: {
+            options: {
+                src: 'coverage/lcov.info',
+                force: true
             }
         }
     });
@@ -112,6 +103,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-istanbul-coverage');
+    grunt.loadNpmTasks('grunt-coveralls');
 
     grunt.registerTask('test', ['jshint', 'jslint', 'jasmine:coverage']);
+    grunt.registerTask('travis', ['jshint', 'jslint', 'jasmine:coverage', 'coveralls']);
 };

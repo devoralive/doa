@@ -11,10 +11,10 @@ define(function () {
                     func_name = args.shift(),
 
                     callback = function () {
-                        return this[func_name].bind(this);
+                        return Object.getPrototypeOf(this)[func_name].bind(this);
                     };
 
-                return callback.call(Object.getPrototypeOf(inst[context]), args);
+                return callback.call(inst[context], args);
             }(object, function_name));
         },
 

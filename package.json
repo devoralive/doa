@@ -1,20 +1,21 @@
 {
-    "name": "doa",
-    "description": "",
-    "version": "0.0.1",
-    "author": "Nicolas Dufreche <n.dufreche@gmail.com>",
-    "homepage": "https://github.com/devoralive/doa",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/devoralive/doa.git"
-    },
-    "devDependencies": {
-        "grunt": "*",
-        "grunt-jslint": "*",
-        "grunt-contrib-jshint": "*",
-        "grunt-contrib-jasmine": "*",
-        "grunt-istanbul-coverage": "*",
-        "grunt-template-jasmine-istanbul": "*",
-        "grunt-template-jasmine-requirejs": "*"
-    }
+  "name": "doa",
+  "description": "",
+  "version": "0.0.1",
+  "author": "Nicolas Dufreche <n.dufreche@gmail.com>",
+  "homepage": "https://github.com/devoralive/doa",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devoralive/doa.git"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-jslint": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-jasmine": "*",
+    "grunt-istanbul-coverage": "*",
+    "grunt-template-jasmine-istanbul": "*",
+    "grunt-template-jasmine-requirejs": "*",
+    "grunt-coveralls": "~1.0.0"
+  }
 }

@@ -1,4 +1,4 @@
-[![GitHub version](https://badge.fury.io/gh/devoralive%2Fdoa.svg)](http://badge.fury.io/gh/devoralive%2Fdoa) [![Code Climate](https://codeclimate.com/github/devoralive/doa/badges/gpa.svg)](https://codeclimate.com/github/devoralive/doa) [![Build Status](https://travis-ci.org/devoralive/doa.svg?branch=master)](https://travis-ci.org/devoralive/doa)
+[![GitHub version](https://badge.fury.io/gh/devoralive%2Fdoa.svg)](http://badge.fury.io/gh/devoralive%2Fdoa) [![Code Climate](https://codeclimate.com/github/devoralive/doa/badges/gpa.svg)](https://codeclimate.com/github/devoralive/doa) [![Build Status](https://travis-ci.org/devoralive/doa.svg?branch=master)](https://travis-ci.org/devoralive/doa) [![Coverage Status](https://img.shields.io/coveralls/devoralive/doa.svg)](https://coveralls.io/r/devoralive/doa)
 
 ##Use doa
 
@@ -59,3 +59,37 @@ define(['doa!trait:your/trait'], {
 	/* comming soon not implemented yet */
 });
 ```
+
+###Project installation :
+
+**Install nodejs and npm**
+
+http://nodejs.org/
+
+
+**Install grunt-cli and bower**
+
+```
+npm install -g grunt-cli bower
+```
+
+**Install node dependencies**
+```
+npm install --save-dev
+```
+
+**Download bower dependenies**
+```
+bower install --dev
+```
+
+###Grunt commands :
+**Checking the code**
+```
+grunt test
+```
+**Run only the specs with coverage**
+```
+grunt jasmine:coverage
+```
+the default jasmine action doesn't work actualy, use only coverage action
