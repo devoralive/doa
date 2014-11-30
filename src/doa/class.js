@@ -1,43 +1,15 @@
-define(function () {
+define(['doa/function', 'doa/abstract'], function (doa_function, doa_abstract) {
     'use strict';
 
-    var keywords = ['construct', 'extend', 'interfaces'],
-
-        bindFunction = function (object, instance, function_name) {
-            object[function_name] = (function () {
-                var args = Array.prototype.slice.call(arguments),
-                    inst = args.shift(),
-                    func_name = args.shift(),
-
-                    callback = function () {
-                        return this[func_name].bind(this);
-                    };
-
-                return callback.call(inst, args);
-            }(instance, function_name));
-        },
-
-        extendAbstract = function (object, proto, property_name) {
-            if ('function' === typeof proto[property_name] && !object.hasOwnProperty(property_name)) {
-                bindFunction(object, proto, property_name);
-            }
-        },
-
-        parseFunction = function (object, proto, property_name) {
-            if (-1 === keywords.indexOf(property_name) && 'function' === typeof proto[property_name]) {
-                bindFunction(object, object.class, property_name);
-            }
-        },
-
-        parseProperties = function (object, proto, context) {
+    var parseProperties = function (object, proto, context) {
             var property_name;
 
             for (property_name in proto) {
                 if (proto.hasOwnProperty(property_name)) {
                     if (context === 'parent') {
-                        extendAbstract(object, proto, property_name);
+                        doa_abstract.extendAbstract(object, proto, property_name);
                     } else {
-                        parseFunction(object, proto, property_name);
+                        doa_function.parseFunction(object, proto, property_name);
                     }
                 }
             }
@@ -59,23 +31,10 @@ define(function () {
             if (proto.hasOwnProperty('parent')) {
                 protectProperty(object.class, 'parent', Object.create(proto.parent));
                 parseProperties(object, proto.parent, 'parent');
-            } else if (proto.hasOwnProperty(keywords[2])) {
+            } else if (proto.hasOwnProperty(doa_function.keywords[2])) {
                 require(['doa/interface'], function (doa_interface) {
-                    doa_interface(object, proto[keywords[2]]);
+                    doa_interface(object, proto[doa_function.keywords[2]]);
                 });
-            }
-        },
-
-        parseParentClass = function (extend) {
-            var parent = {},
-                parent_name;
-
-            for (parent_name in extend) {
-                if (extend.hasOwnProperty(parent_name)) {
-                    parent = extend[parent_name];
-                    parent.class_name = parent_name;
-                    return parent;
-                }
             }
         },
 
@@ -85,7 +44,7 @@ define(function () {
             }
 
             if (dependencies && dependencies.extend) {
-                instance.parent = parseParentClass(dependencies.extend);
+                instance.parent = doa_abstract.parseParentClass(dependencies.extend);
             }
         },
 
@@ -97,14 +56,12 @@ define(function () {
                     protectProperty(this, 'class', Object.create(instance));
                     parseObject(this);
 
-                    if (!Object.getPrototypeOf(this.class).hasOwnProperty(keywords[0])) {
+                    if (!Object.getPrototypeOf(this.class).hasOwnProperty(doa_function.keywords[0])) {
                         Object.getPrototypeOf(this.class).construct = function () {
                             return;
                         };
                     }
-
                     protectProperty(this, 'class_name', class_name);
-
                     Object.getPrototypeOf(this.class).construct.apply(this.class, arguments);
 
                     return this;
