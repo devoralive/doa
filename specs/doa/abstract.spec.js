@@ -1,7 +1,7 @@
-define(['doa/class', 'doa/interface', 'specs/class.mock', 'es5shim/es5-shim'], function (DoaClass, doa_interface, MockClass) {
+define(['doa/class', 'doa/interface', 'specs/class.mock', 'specs/abstract.mock', 'es5shim/es5-shim'], function (DoaClass, doa_interface, MockClass, MockAbstract) {
     'use strict';
 
-    var MockConstructor = new DoaClass('specs/class.mock', MockClass),
+    var MockConstructor = new DoaClass('specs/class.mock', MockClass, {extend: {'specs/abstract.mock': MockAbstract}}),
         MockInstance = new MockConstructor(),
         MockInterface = {
             setAbstractParam: function (param) {
@@ -16,16 +16,16 @@ define(['doa/class', 'doa/interface', 'specs/class.mock', 'es5shim/es5-shim'], f
         });
 
         it('check object parent acessor', function () {
-            expect(MockInstance.parent.abstract_param).toBeUndefined();
+            expect(MockInstance.class.parent.abstract_param).toBeUndefined();
             MockInstance.setAbstractParam('parent param');
 
-            expect(MockInstance.parent.abstract_param).toBe('parent param');
+            expect(MockInstance.class.parent.abstract_param).toBe('parent param');
             expect(MockInstance.getAbstractParam()).toBe('parent param');
         });
 
         it('check object abstract and interface validation', function () {
             try {
-                doa_interface({class_name :  'class_name'}, {MockInterface: MockInterface});
+                doa_interface(MockInstance, {MockInterface: MockInterface});
                 expect(true).toBe(true);
             } catch (e) {
                 expect(e).toBe(false);
@@ -33,11 +33,11 @@ define(['doa/class', 'doa/interface', 'specs/class.mock', 'es5shim/es5-shim'], f
         });
 
         it('check that the two instances have differents parents', function () {
-            var MockInstanceTwo = new MockConstructor(),
-            MockInstance.setAbstractParam('parent param');
+            var MockInstanceTwo = new MockConstructor();
+            MockInstance.setAbstractParam('parent param second time');
 
-            expect(MockInstanceTwo.parent.abstract_param).toBeUndefined();
-            expect(MockInstance.getAbstractParam()).toBe('parent param');
+            expect(MockInstanceTwo.class.parent.abstract_param).toBeUndefined();
+            expect(MockInstance.getAbstractParam()).toBe('parent param second time');
         });
     });
 });
