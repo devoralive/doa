@@ -9,8 +9,8 @@ define(['doa/interface', 'specs/interface.mock', 'es5shim/es5-shim'], function (
         }
     };
 
-    describe('Interface Spec', function () {
-        it('check object interface missing function', function () {
+    describe('Interface Spec.', function () {
+        it('Check object interface missing function.', function () {
             try {
                 doa_interface({class_name :  'class_name'}, {MockInterface: MockInterface});
                 expect('Exception was raising').toBe(true);
@@ -19,7 +19,7 @@ define(['doa/interface', 'specs/interface.mock', 'es5shim/es5-shim'], function (
             }
         });
 
-        it('check object interface to many parameters', function () {
+        it('Check object interface to many parameters.', function () {
             try {
                 doa_interface(mock, {MockInterface: MockInterface});
                 expect('Exception was raising').toBe(true);

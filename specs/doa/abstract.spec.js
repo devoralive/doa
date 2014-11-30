@@ -9,13 +9,12 @@ define(['doa/class', 'doa/interface', 'specs/class.mock', 'specs/abstract.mock',
             }
         };
 
-
-    describe('Abstract Spec', function () {
-        it('check object abstract binding function', function () {
+    describe('Abstract Spec.', function () {
+        it('Check object abstract binding function.', function () {
             expect(typeof MockInstance.setAbstractParam).toBe('function');
         });
 
-        it('check object parent acessor', function () {
+        it('Check object parent acessor.', function () {
             expect(MockInstance.class.parent.abstract_param).toBeUndefined();
             MockInstance.setAbstractParam('parent param');
 
@@ -23,7 +22,7 @@ define(['doa/class', 'doa/interface', 'specs/class.mock', 'specs/abstract.mock',
             expect(MockInstance.getAbstractParam()).toBe('parent param');
         });
 
-        it('check object abstract and interface validation', function () {
+        it('Check object abstract and interface validation.', function () {
             try {
                 doa_interface(MockInstance, {MockInterface: MockInterface});
                 expect(true).toBe(true);
@@ -32,7 +31,7 @@ define(['doa/class', 'doa/interface', 'specs/class.mock', 'specs/abstract.mock',
             }
         });
 
-        it('check that the two instances have differents parents', function () {
+        it('Check that the two instances have differents parents.', function () {
             var MockInstanceTwo = new MockConstructor();
             MockInstance.setAbstractParam('parent param second time');
 
