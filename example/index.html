@@ -8,11 +8,13 @@
     <script type="text/javascript" src="../bower_components/requirejs/require.js"></script>
     <script type="text/javascript" src="require.config.js"></script>
     <script type="text/javascript">
+        console.time('StartRequire');
         require(['doa!class:specs/class.mock'], function (ClassMock) {
             var foo = new ClassMock('bar');
 
             console.log(foo);
         });
+        console.timeEnd('StartRequire');
     </script>
 </body>
 </html>
