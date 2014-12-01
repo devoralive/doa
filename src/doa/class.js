@@ -24,37 +24,30 @@ define(['doa/function', 'doa/abstract'], function (doa_function, doa_abstract) {
             });
         },
 
-        parseObject = function (object) {
+        parseObject = function (object, dependencies) {
             var proto = Object.getPrototypeOf(object.class);
             parseProperties(object, proto, 'class');
+            dependencies = dependencies || {};
 
-            if (proto.hasOwnProperty('parent')) {
-                protectProperty(object.class, 'parent', Object.create(proto.parent));
-                parseProperties(object, proto.parent, 'parent');
-            } else if (proto.hasOwnProperty(doa_function.keywords[2])) {
+            if (dependencies.hasOwnProperty(doa_function.keywords[1])) {
+                protectProperty(proto, 'parent', Object.create(doa_abstract.parseParentClass(dependencies[doa_function.keywords[1]])));
+                parseProperties(object, Object.getPrototypeOf(proto.parent), 'parent');
+            } else if (dependencies.hasOwnProperty(doa_function.keywords[2])) {
                 require(['doa/interface'], function (doa_interface) {
-                    doa_interface(object, proto[doa_function.keywords[2]]);
+                    doa_interface(object, dependencies[doa_function.keywords[2]]);
                 });
             }
         },
 
-        addObjectDependencies = function (instance, dependencies) {
-            if (dependencies && dependencies.interfaces) {
-                instance.interfaces = dependencies.interfaces;
-            }
-
-            if (dependencies && dependencies.extend) {
-                instance.parent = doa_abstract.parseParentClass(dependencies.extend);
-            }
-        },
-
         objectConstructor = function (name, object, dependencies) {
-            var instance = (undefined === object) ? name : object,
+            var definition = (undefined === object) ? name : object,
                 class_name = (undefined === object) ? 'anonymous' : name,
 
                 constructor = function () {
-                    protectProperty(this, 'class', Object.create(instance));
-                    parseObject(this);
+                    var args = Array.prototype.slice.call(arguments),
+                        dep = args.shift();
+                    protectProperty(this, 'class', Object.create(definition));
+                    parseObject(this, dep);
 
                     if (!Object.getPrototypeOf(this.class).hasOwnProperty(doa_function.keywords[0])) {
                         Object.getPrototypeOf(this.class).construct = function () {
@@ -62,13 +55,12 @@ define(['doa/function', 'doa/abstract'], function (doa_function, doa_abstract) {
                         };
                     }
                     protectProperty(this, 'class_name', class_name);
-                    Object.getPrototypeOf(this.class).construct.apply(this.class, arguments);
+                    Object.getPrototypeOf(this.class).construct.apply(this.class, args);
 
                     return this;
                 };
-            addObjectDependencies(instance, dependencies);
 
-            return constructor.bind(instance);
+            return constructor.bind(definition, dependencies);
         };
 
     return objectConstructor;
