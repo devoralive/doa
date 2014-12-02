@@ -25,13 +25,16 @@ define(['doa/function', 'doa/abstract'], function (doa_function, doa_abstract) {
         },
 
         parseObject = function (object, dependencies) {
-            var proto = Object.getPrototypeOf(object.class);
+            var proto = Object.getPrototypeOf(object.class),
+                parent;
             parseProperties(object, proto, 'class');
             dependencies = dependencies || {};
 
             if (dependencies.hasOwnProperty(doa_function.keywords[1])) {
-                protectProperty(proto, 'parent', Object.create(doa_abstract.parseParentClass(dependencies[doa_function.keywords[1]])));
-                parseProperties(object, Object.getPrototypeOf(proto.parent), 'parent');
+                parent = doa_abstract.parseParentClass(dependencies[doa_function.keywords[1]]);
+                protectProperty(object.class, 'parent', Object.create(parent));
+
+                parseProperties(object, Object.getPrototypeOf(object.class.parent), 'parent');
             } else if (dependencies.hasOwnProperty(doa_function.keywords[2])) {
                 require(['doa/interface'], function (doa_interface) {
                     doa_interface(object, dependencies[doa_function.keywords[2]]);
