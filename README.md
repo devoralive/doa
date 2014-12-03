@@ -45,8 +45,20 @@ define(['doa!implement:your/interface'], {
 
 **Extend:**
 ```Javascript
+/**
+ * Parent class
+ */
+define({
+	param: '',
+
+	setParentParam: function () {
+		return this.param;
+	}
+});
+/**
+ * Class that extend the abstract class
+ */
 define(['doa!extend:your/parent'], {
-	/*comming soon not implemented yet */
 	getParentParam: function () {
 		return this.parent.param;
 	}
