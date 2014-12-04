@@ -3,6 +3,10 @@ define(['doa!extend:specs/abstract.mock', 'doa!implement:specs/interface.mock'],
 
     paramOnConstruct: '',
 
+    public: {
+        public_param: 'public param'
+    },
+
     construct: function (param) {
         'use strict';
         this.paramOnConstruct = param;
@@ -21,5 +25,10 @@ define(['doa!extend:specs/abstract.mock', 'doa!implement:specs/interface.mock'],
     setParam: function (param) {
         'use strict';
         this.param = param;
+    },
+
+    setPublicParam: function (param) {
+        'use strict';
+        this.public_param = param;
     }
 });
