@@ -56,5 +56,5 @@
     "white" : true, 
 
     
-    "predef" : ["define", "module", "it", "describe", "beforeEach", "expect", "require"] 
+    "predef" : ["define", "module", "it", "describe", "beforeEach", "expect", "require", "xdescribe"] 
 }

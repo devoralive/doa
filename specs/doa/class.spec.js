@@ -5,6 +5,7 @@ define(['doa/class', 'specs/class.mock', 'es5shim/es5-shim'], function (DoaClass
         Instance = new ObjectConstructor('test on construct'),
         InstanceTwo = new ObjectConstructor('test on other construct');
 
+
     describe('Object Spec.', function () {
         it('Check object creation.', function () {
             expect(typeof ObjectConstructor).toBe('function');

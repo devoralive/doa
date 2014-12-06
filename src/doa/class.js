@@ -1,13 +1,42 @@
 define(['doa/function', 'doa/abstract'], function (doa_function, doa_abstract) {
     'use strict';
 
-    var parseProperties = function (object, proto, context) {
+    var definePublicProperty = function (object, param_name) {
+            Object.defineProperty(
+                object,
+                param_name,
+                {
+                    get: function () {
+                        return object.class[param_name];
+                    },
+                    set: function (value) {
+                        object.class[param_name] = value;
+                    },
+                    enumerable: true,
+                    configurable: false
+                }
+            );
+        },
+
+        bindPublicParam = function (object, proto) {
+            var param_name;
+            for (param_name in proto.public) {
+                if (proto.public.hasOwnProperty(param_name) && !proto.hasOwnProperty(param_name)) {
+                    proto[param_name] = proto.public[param_name];
+                    definePublicProperty(object, param_name);
+                }
+            }
+        },
+
+        parseProperties = function (object, proto, context) {
             var property_name;
 
             for (property_name in proto) {
                 if (proto.hasOwnProperty(property_name)) {
                     if (context === 'parent') {
                         doa_abstract.extendAbstract(object, proto, property_name);
+                    } else if (property_name === 'public') {
+                        bindPublicParam(object, proto);
                     } else {
                         doa_function.parseFunction(object, proto, property_name);
                     }
