@@ -8,7 +8,7 @@ define({
 	/* private param declaration */
 	param: 'this param is private',
 
-	/* public param not implemented yet */
+	/* public param declaration */
 	public: {
 		publicParam: 'this param is public'
 	},
