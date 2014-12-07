@@ -1,7 +1,7 @@
-define(['doa/class', 'specs/class.mock', 'es5shim/es5-shim'], function (DoaClass, Mock) {
+define(['doa/class', 'test/class.mock', 'es5shim/es5-shim'], function (DoaClass, Mock) {
     'use strict';
 
-    var ObjectConstructor = new DoaClass('specs/class.mock', Mock),
+    var ObjectConstructor = new DoaClass('test/class.mock', Mock),
         Instance = new ObjectConstructor('test on construct'),
         InstanceTwo = new ObjectConstructor('test on other construct');
 
@@ -14,7 +14,7 @@ define(['doa/class', 'specs/class.mock', 'es5shim/es5-shim'], function (DoaClass
         it('Check new instance creation.', function () {
             expect(typeof Instance).toBe('object');
             expect(Instance.param).toBeUndefined();
-            expect(Instance.class_name).toBe('specs/class.mock');
+            expect(Instance.class_name).toBe('test/class.mock');
         });
 
         it('Check function parsing.', function () {

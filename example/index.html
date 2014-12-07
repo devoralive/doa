@@ -9,7 +9,7 @@
     <script type="text/javascript" src="require.config.js"></script>
     <script type="text/javascript">
         console.time('StartRequire');
-        require(['doa!class:specs/class.mock'], function (ClassMock) {
+        require(['doa!class:test/class.mock'], function (ClassMock) {
             var foo = new ClassMock('bar');
 
             console.log(foo);

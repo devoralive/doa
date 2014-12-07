@@ -1,7 +1,7 @@
-define(['doa/class', 'doa/interface', 'specs/class.mock', 'specs/abstract.mock', 'es5shim/es5-shim'], function (DoaClass, doa_interface, MockClass, MockAbstract) {
+define(['doa/class', 'doa/interface', 'test/class.mock', 'test/abstract.mock', 'es5shim/es5-shim'], function (DoaClass, doa_interface, MockClass, MockAbstract) {
     'use strict';
 
-    var MockConstructor = new DoaClass('specs/class.mock', MockClass, {extend: {'specs/abstract.mock': MockAbstract}}),
+    var MockConstructor = new DoaClass('test/class.mock', MockClass, {extend: {'test/abstract.mock': MockAbstract}}),
         MockInstance = new MockConstructor(),
         MockInterface = {
             setAbstractParam: function (param) {

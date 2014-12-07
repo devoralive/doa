@@ -100,7 +100,7 @@ bower install --dev
 ```
 grunt test
 ```
-**Run only the specs with coverage**
+**Run only the test with coverage**
 ```
 grunt jasmine:coverage
 ```

@@ -5,7 +5,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         jshint: {
-            files: ['Gruntfile.js', 'src/**/*.js', 'specs/**/*.js'],
+            files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
             options: {
                 jshintrc: '.jshintrc'
             }
@@ -22,7 +22,7 @@ module.exports = function (grunt) {
                 }
             },
             specs: {
-                src: ['specs/**/*.js'],
+                src: ['test/**/*.js'],
                 directives: {
                     node: true,
                     nomen: true,
@@ -63,11 +63,11 @@ module.exports = function (grunt) {
             default: {
                 src: 'src/**/*.js',
                 options: {
-                    specs: 'specs/**/*.spec.js',
+                    specs: 'test/**/*.spec.js',
                     template: require('grunt-template-jasmine-requirejs'),
                     templateOptions: {
                         baseUrl: './',
-                        requireConfigFile: 'specs/require.config.js'
+                        requireConfigFile: 'test/require.config.js'
                     }
                 }
             },
@@ -85,7 +85,7 @@ module.exports = function (grunt) {
                         template: require('grunt-template-jasmine-requirejs'),
                         templateOptions: {
                             baseUrl: './',
-                            requireConfigFile: 'specs/require.config.js'
+                            requireConfigFile: 'test/require.config.js'
                         }
                     }
                 }

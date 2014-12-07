@@ -1,4 +1,4 @@
-define(['doa/interface', 'specs/interface.mock', 'es5shim/es5-shim'], function (doa_interface, MockInterface) {
+define(['doa/interface', 'test/interface.mock', 'es5shim/es5-shim'], function (doa_interface, MockInterface) {
     'use strict';
 
     var mock = {

@@ -1,4 +1,4 @@
-define(['doa!extend:specs/abstract.mock', 'doa!implement:specs/interface.mock'], {
+define(['doa!extend:test/abstract.mock', 'doa!implement:test/interface.mock'], {
     param: undefined,
 
     paramOnConstruct: '',

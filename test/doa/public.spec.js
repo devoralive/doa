@@ -1,6 +1,6 @@
-define(['doa/class', 'specs/class.mock', 'es5shim/es5-shim'], function (DoaClass, Mock) {
+define(['doa/class', 'test/class.mock', 'es5shim/es5-shim'], function (DoaClass, Mock) {
     'use strict';
-    var ObjectConstructor = new DoaClass('specs/class.mock', Mock),
+    var ObjectConstructor = new DoaClass('test/class.mock', Mock),
         Instance = new ObjectConstructor(),
         InstanceTwo = new ObjectConstructor();
 
