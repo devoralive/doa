@@ -5,9 +5,9 @@ define(['doa/function'], function (doa_function) {
         bindTraitFunction: function (object, instance, trait) {
             var property_name;
             for (property_name in trait) {
-                if (trait.hasOwnProperty(property_name) && !instance.hasOwnProperty(property_name)) {
+                if (trait.hasOwnProperty(property_name) && !instance.hasOwnProperty(property_name) && 'function' === typeof trait[property_name]) {
                     instance[property_name] = trait[property_name];
-                    doa_function.bindFunction(object, instance, property_name);
+                    doa_function.bindFunction(object, object.class, property_name);
                 }
             }
         },
