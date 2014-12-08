@@ -18,8 +18,21 @@ define(['require', 'doa/class'], function (require) {
                 dependencies.extend = config.doa.extend;
                 delete config.doa.extend;
             }
+            if (config.doa.trait) {
+                dependencies.trait = config.doa.trait;
+                delete config.doa.trait;
+            }
 
             return dependencies;
+        },
+
+        initDependencies: function (action, dep_name, dep, config) {
+            if ('implement' === action || 'extend' === action || 'trait' === action) {
+                config.doa[matches[action]] = config.doa[matches[action]] || {};
+
+                config.doa[matches[action]][dep_name] = dep;
+            }
+            return dep;
         },
 
         init: function (action, dep_name, dep, config) {
@@ -29,11 +42,8 @@ define(['require', 'doa/class'], function (require) {
                 DoaClass = require('doa/class');
                 return new DoaClass(dep_name, dep, this.getDependencies(config));
             }
-            if ('implement' === action || 'extend' === action) {
-                config.doa[matches[action]] = config.doa[matches[action]] || {};
+            this.initDependencies(action, dep_name, dep, config);
 
-                config.doa[matches[action]][dep_name] = dep;
-            }
             return dep;
         },
 

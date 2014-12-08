@@ -2,7 +2,7 @@ define(function () {
     'use strict';
 
     return {
-        keywords: ['construct', 'extend', 'interfaces'],
+        keywords: ['construct', 'extend', 'interfaces', 'trait'],
 
         bindFunction: function (object, instance, function_name) {
             object[function_name] = (function () {
