@@ -1,4 +1,4 @@
-define(['doa/function', 'doa/abstract', 'doa/trait'], function (doa_function, doa_abstract, doa_trait) {
+define('doa/class', ['doa/function', 'doa/abstract', 'doa/trait'], function (doa_function, doa_abstract, doa_trait) {
     'use strict';
 
     var definePublicProperty = function (object, param_name) {

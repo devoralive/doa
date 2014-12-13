@@ -1,4 +1,4 @@
-define(['doa/function'], function (doa_function) {
+define('doa/abstract', ['doa/function'], function (doa_function) {
     'use strict';
 
     return {

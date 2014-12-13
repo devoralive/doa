@@ -1,4 +1,4 @@
-define(function () {
+define('doa/function', function () {
     'use strict';
 
     return {

@@ -96,12 +96,36 @@ module.exports = function (grunt) {
                 src: 'coverage/lcov.info',
                 force: true
             }
+        },
+        concat: {
+            options: {
+                banner: '/*! <%= pkg.name %> - v<%= pkg.version %> */\n' +
+                        'require.config({\n' +
+                        '    paths: {\n' +
+                        '        \'doa/abstract\': \'doa\',\n' +
+                        '        \'doa/class\': \'doa\',\n' +
+                        '        \'doa/function\': \'doa\',\n' +
+                        '        \'doa/interface\': \'doa\',\n' +
+                        '        \'doa/trait\': \'doa\',\n' +
+                        '    }\n' +
+                        '});\n',
+                separator: '',
+                process: function (src, filepath) {
+                    return '\n/* ' + filepath + ' */\n' + src;
+                }
+            },
+            dist: {
+                src: ['src/doa.js', 'src/doa/*.js'],
+                dest: 'buid/doa.js'
+            }
         }
     });
+
 
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-istanbul-coverage');
     grunt.loadNpmTasks('grunt-coveralls');
 

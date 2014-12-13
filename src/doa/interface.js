@@ -1,4 +1,4 @@
-define(function () {
+define('doa/interface', function () {
     'use strict';
 
     var checkFunctionInterface = function (object, implemantation, interface_name, func_name) {

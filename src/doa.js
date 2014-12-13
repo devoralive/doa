@@ -1,4 +1,4 @@
-define(['require', 'doa/class'], function (require) {
+define('doa', ['require', 'doa/class'], function (require) {
     'use strict';
 
     var matches = {
