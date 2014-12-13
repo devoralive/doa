@@ -5,41 +5,41 @@
 **Object declaration :**
 ```Javascript
 define({
-	/* private param declaration */
-	param: 'this param is private',
+    /* private param declaration */
+    param: 'this param is private',
 
-	/* public param declaration */
-	public: {
-		publicParam: 'this param is public'
-	},
+    /* public param declaration */
+    public: {
+        publicParam: 'this param is public'
+    },
 
-	/* object constructor */
-	construct: function (some, params) {
+    /* object constructor */
+    construct: function (some, params) {
 
-	},
+    },
 
-	/* add accessor for your param */
-	getParam: function () {
-		return this.param;
-	},
+    /* add accessor for your param */
+    getParam: function () {
+        return this.param;
+    },
 
-	setParam: function (param) {
-		this.param = param;
-	}
+    setParam: function (param) {
+        this.param = param;
+    }
 });
 ```
 
 **Object requirement :**
 ```Javascript
 require(['doa!class:your/object'], function (YourObject) {
-	var myObjectInstance = new YourObject('contruct', 'params');
+    var myObjectInstance = new YourObject('contruct', 'params');
 });
 ```
 
 **Interface:**
 ```Javascript
 define(['doa!implement:your/interface'], {
-	/* object implementing your/interface */
+    /* object implementing your/interface */
 });
 ```
 
@@ -49,26 +49,25 @@ define(['doa!implement:your/interface'], {
  * Parent class
  */
 define({
-	param: '',
+    param: '',
 
-	setParentParam: function () {
-		return this.param;
-	}
+    setParentParam: function () {
+        return this.param;
+    }
 });
 /**
  * Class that extend the abstract class
  */
 define(['doa!extend:your/parent'], {
-	getParentParam: function () {
-		return this.parent.param;
-	}
+    getParentParam: function () {
+        return this.parent.param;
+    }
 });
 ```
 
 **Trait:**
 ```Javascript
 define(['doa!trait:your/trait'], {
-	/* comming soon not implemented yet */
 });
 ```
 
