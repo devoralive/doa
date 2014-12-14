@@ -8,6 +8,6 @@ before_install:
 install:
     - npm install --save-dev
     - bower install
-script: grunt travis
+script: grunt test
 after_script:
   - CODECLIMATE_REPO_TOKEN=e14f2894277177f617ec1b5c4356f05bbe08f8f7054817862ea6d34a03984fe7 codeclimate < coverage/lcov.info

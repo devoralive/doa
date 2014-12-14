@@ -56,16 +56,6 @@ module.exports = function (grunt) {
                         'require'
                     ]
                 }
-            },
-            dist: {
-                src: ['dist/*.js'],
-                directives: {
-                    browser: true,
-                    predef: [
-                        'define',
-                        'require'
-                    ]
-                }
             }
         },
         jasmine: {
@@ -132,6 +122,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-istanbul-coverage');
-    grunt.registerTask('test', ['concat', 'jshint', 'jslint', 'jasmine:coverage']);
-    grunt.registerTask('travis', ['concat', 'jshint', 'jslint', 'jasmine:coverage', 'uglify']);
+
+    grunt.registerTask('test', ['jshint', 'jslint', 'jasmine:coverage']);
+    grunt.registerTask('dist', ['jshint', 'jslint', 'jasmine:coverage', 'concat', 'uglify']);
 };
