@@ -56,9 +56,18 @@ module.exports = function (grunt) {
                         'require'
                     ]
                 }
+            },
+            build: {
+                src: ['build/*.js'],
+                directives: {
+                    browser: true,
+                    predef: [
+                        'define',
+                        'require'
+                    ]
+                }
             }
         },
-
         jasmine: {
             default: {
                 src: 'src/**/*.js',
@@ -91,32 +100,27 @@ module.exports = function (grunt) {
                 }
             }
         },
-        coveralls: {
-            options: {
-                src: 'coverage/lcov.info',
-                force: true
-            }
-        },
         concat: {
             options: {
-                banner: '/*! <%= pkg.name %> - v<%= pkg.version %> */\n' +
-                        'require.config({\n' +
-                        '    paths: {\n' +
-                        '        \'doa/abstract\': \'doa\',\n' +
-                        '        \'doa/class\': \'doa\',\n' +
-                        '        \'doa/function\': \'doa\',\n' +
-                        '        \'doa/interface\': \'doa\',\n' +
-                        '        \'doa/trait\': \'doa\',\n' +
-                        '    }\n' +
-                        '});\n',
+                banner: '/*! <%= pkg.name %> - v<%= pkg.version %> */\n',
                 separator: '',
                 process: function (src, filepath) {
                     return '\n/* ' + filepath + ' */\n' + src;
                 }
             },
             dist: {
-                src: ['src/doa.js', 'src/doa/*.js'],
-                dest: 'buid/doa.js'
+                src: ['src/doa.dist.js', 'src/doa.js', 'src/doa/*.js'],
+                dest: 'dist/doa.js'
+            }
+        },
+        uglify: {
+            options: {
+                banner: '<%= concat.options.banner %>'
+            },
+            dist: {
+                files: {
+                    'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+                }
             }
         }
     });
@@ -126,9 +130,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-istanbul-coverage');
-    grunt.loadNpmTasks('grunt-coveralls');
-
-    grunt.registerTask('test', ['jshint', 'jslint', 'jasmine:coverage']);
-    grunt.registerTask('travis', ['jshint', 'jslint', 'jasmine:coverage', 'coveralls']);
+    grunt.registerTask('test', ['concat', 'jshint', 'jslint', 'jasmine:coverage']);
+    grunt.registerTask('travis', ['concat', 'jshint', 'jslint', 'jasmine:coverage', 'uglify']);
 };
