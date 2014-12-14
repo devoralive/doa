@@ -28,5 +28,3 @@ bower_components
 # Jasmine
 _SpecRunner.html
 
-# minified
-build/

@@ -11,7 +11,7 @@
         "amd"
     ],
     "license": "MIT",
-    "private": true,
+    "private": false,
     "ignore": [
         "**/.*",
         "node_modules",
@@ -24,7 +24,7 @@
     "dependencies": {
         "requirejs": "*"
     },
-    "devDependencies": { 
+    "devDependencies": {
         "es5-shim": "*"
     }
 }
