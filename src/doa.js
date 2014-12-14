@@ -1,4 +1,4 @@
-define('doa', ['require', 'doa/class'], function (require) {
+define('doa', ['require'], function (require) {
     'use strict';
 
     var matches = {
@@ -47,14 +47,26 @@ define('doa', ['require', 'doa/class'], function (require) {
             return dep;
         },
 
+        checkDoaPaths: function (paths) {
+            if (undefined === paths['doa/class'] && paths['doa/class'] !== paths.doa) {
+                var module_name;
+                for (module_name in paths) {
+                    if (paths.hasOwnProperty(module_name) && /doa\//.test(module_name)) {
+                        paths[module_name] = paths.doa;
+                    }
+                }
+            }
+        },
+
         load: function (namespace, req, onload, config) {
             var parts = namespace.split(':'),
                 action = parts.shift(),
                 dependency_name = parts.shift(),
                 self = this;
 
+            self.checkDoaPaths(config.paths);
             config.doa = config.doa || {};
-            req([dependency_name], function (dependency) {
+            req([dependency_name, 'doa/class'], function (dependency) {
                 var result = self.init(action, dependency_name, dependency, config);
 
                 onload(result);
