@@ -1,4 +1,4 @@
-/*! doa - v0.0.1 */
+/*! doa - v0.1.1 */
 
 /* src/doa.dist.js */
 require.config({
