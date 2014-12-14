@@ -1,8 +1,6 @@
 language: node_js
 node_js:
     - "0.10.33"
-addons:
-    code_climate: e14f2894277177f617ec1b5c4356f05bbe08f8f7054817862ea6d34a03984fe7
 before_install:
     - npm cache clean
     - npm update npm -g
@@ -12,4 +10,4 @@ install:
     - bower install
 script: grunt travis
 after_script:
-  - cat coverage/lcov.info | codeclimate
+  - CODECLIMATE_REPO_TOKEN=e14f2894277177f617ec1b5c4356f05bbe08f8f7054817862ea6d34a03984fe7 codeclimate < coverage/lcov.info
