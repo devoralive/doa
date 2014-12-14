@@ -1,6 +1,6 @@
 {
     "name": "doa",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "homepage": "https://github.com/devoralive/doa",
     "authors": [
         "Nicolas Dufreche <n.dufreche@gmail.com>"
@@ -13,7 +13,7 @@
     "license": "MIT",
     "private": false,
     "ignore": [
-        "**/.*",
+        ".*",
         "node_modules",
         "bower_components",
         "test",
