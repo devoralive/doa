@@ -1,7 +1,7 @@
 {
   "name": "doa",
-  "description": "",
-  "version": "0.0.1",
+  "description": "JavaScript class library based on requirejs",
+  "version": "0.1.0",
   "author": "Nicolas Dufreche <n.dufreche@gmail.com>",
   "homepage": "https://github.com/devoralive/doa",
   "repository": {
@@ -9,7 +9,6 @@
     "url": "https://github.com/devoralive/doa.git"
   },
   "devDependencies": {
-    "coveralls": "^2.11.2",
     "grunt": "*",
     "grunt-concat": "^0.1.6",
     "grunt-contrib-concat": "^0.5.0",
