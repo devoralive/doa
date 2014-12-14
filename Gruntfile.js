@@ -57,8 +57,8 @@ module.exports = function (grunt) {
                     ]
                 }
             },
-            build: {
-                src: ['build/*.js'],
+            dist: {
+                src: ['dist/*.js'],
                 directives: {
                     browser: true,
                     predef: [
