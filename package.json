@@ -1,7 +1,7 @@
 {
   "name": "doa",
   "description": "JavaScript class library based on requirejs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Nicolas Dufreche <n.dufreche@gmail.com>",
   "homepage": "https://github.com/devoralive/doa",
   "repository": {

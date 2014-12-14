@@ -1,11 +1,11 @@
 {
     "name": "doa",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "homepage": "https://github.com/devoralive/doa",
     "authors": [
         "Nicolas Dufreche <n.dufreche@gmail.com>"
     ],
-    "description": "JavaScript class library",
+    "description": "JavaScript class library based on requirejs",
     "main": "doa.js",
     "moduleType": [
         "amd"
