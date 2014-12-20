@@ -13,3 +13,8 @@ insert_final_newline = true
 [**.js]
 indent_style = space
 indent_size = 4
+
+# Tabs in JSON and YML unless otherwise specified
+[**.json, **.yml]
+indent_style = space
+indent_size = 2
