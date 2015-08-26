@@ -7,10 +7,10 @@ define('doa/class', ['doa/function', 'doa/abstract', 'doa/trait'], function (doa
                 param_name,
                 {
                     get: function () {
-                        return object.class[param_name];
+                        return object.blueprint[param_name];
                     },
                     set: function (value) {
-                        object.class[param_name] = value;
+                        object.blueprint[param_name] = value;
                     },
                     enumerable: true,
                     configurable: false
@@ -54,16 +54,16 @@ define('doa/class', ['doa/function', 'doa/abstract', 'doa/trait'], function (doa
         },
 
         parseObject = function (object, dependencies) {
-            var proto = Object.getPrototypeOf(object.class),
+            var proto = Object.getPrototypeOf(object.blueprint),
                 parent;
 
-            parseProperties(object, proto, 'class');
+            parseProperties(object, proto, 'blueprint');
             dependencies = dependencies || {};
 
             if (dependencies.hasOwnProperty(doa_function.keywords[1])) {
                 parent = doa_abstract.parseParentClass(dependencies[doa_function.keywords[1]]);
-                protectProperty(object.class, 'parent', Object.create(parent));
-                parseProperties(object, Object.getPrototypeOf(object.class.parent), 'parent');
+                protectProperty(object.blueprint, 'parent', Object.create(parent));
+                parseProperties(object, Object.getPrototypeOf(object.blueprint.parent), 'parent');
             }
             if (dependencies.hasOwnProperty(doa_function.keywords[2])) {
                 require(['doa/interface'], function (doa_interface) {
@@ -83,16 +83,16 @@ define('doa/class', ['doa/function', 'doa/abstract', 'doa/trait'], function (doa
                 constructor = function () {
                     var args = Array.prototype.slice.call(arguments),
                         dep = args.shift();
-                    protectProperty(this, 'class', Object.create(definition));
+                    protectProperty(this, 'blueprint', Object.create(definition));
                     parseObject(this, dep);
 
-                    if (!Object.getPrototypeOf(this.class).hasOwnProperty(doa_function.keywords[0])) {
-                        Object.getPrototypeOf(this.class).construct = function () {
+                    if (!Object.getPrototypeOf(this.blueprint).hasOwnProperty(doa_function.keywords[0])) {
+                        Object.getPrototypeOf(this.blueprint).construct = function () {
                             return this;
                         };
                     }
                     protectProperty(this, 'class_name', class_name);
-                    Object.getPrototypeOf(this.class).construct.apply(this.class, args);
+                    Object.getPrototypeOf(this.blueprint).construct.apply(this.blueprint, args);
 
                     return this;
                 };

@@ -7,7 +7,7 @@ define('doa/trait', ['doa/function'], function (doa_function) {
             for (property_name in trait) {
                 if (trait.hasOwnProperty(property_name) && !instance.hasOwnProperty(property_name) && 'function' === typeof trait[property_name]) {
                     instance[property_name] = trait[property_name];
-                    doa_function.bindFunction(object, object.class, property_name);
+                    doa_function.bindFunction(object, object.blueprint, property_name);
                 }
             }
         },

@@ -1,34 +1,38 @@
-define(['doa!extend:test/abstract.mock', 'doa!implement:test/interface.mock'], {
-    param: undefined,
+define(
+    ['doa!extend:test/abstract.mock', 'doa!implement:test/interface.mock', 'doa!trait:test/trait.mock'],
 
-    paramOnConstruct: '',
+    {
+        param: undefined,
 
-    public: {
-        public_param: 'public param'
-    },
+        paramOnConstruct: '',
 
-    construct: function (param) {
-        'use strict';
-        this.paramOnConstruct = param;
-    },
+        public: {
+            public_param: 'public param'
+        },
 
-    getParam: function () {
-        'use strict';
-        return this.param;
-    },
+        construct: function (param) {
+            'use strict';
+            this.paramOnConstruct = param;
+        },
 
-    getAbstractParam: function () {
-        'use strict';
-        return this.parent.abstract_param;
-    },
+        getParam: function () {
+            'use strict';
+            return this.param;
+        },
 
-    setParam: function (param) {
-        'use strict';
-        this.param = param;
-    },
+        getAbstractParam: function () {
+            'use strict';
+            return this.parent.abstract_param;
+        },
 
-    setPublicParam: function (param) {
-        'use strict';
-        this.public_param = param;
+        setParam: function (param) {
+            'use strict';
+            this.param = param;
+        },
+
+        setPublicParam: function (param) {
+            'use strict';
+            this.public_param = param;
+        }
     }
-});
+);

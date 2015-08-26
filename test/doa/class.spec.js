@@ -18,7 +18,7 @@ define(['doa/class', 'test/class.mock', 'es5shim/es5-shim'], function (DoaClass,
         });
 
         it('Check function parsing.', function () {
-            expect(Instance.class.param).toBeUndefined();
+            expect(Instance.blueprint.param).toBeUndefined();
             expect(typeof Instance.getParam).toBe('function');
 
             Instance.setParam('test');
@@ -27,8 +27,8 @@ define(['doa/class', 'test/class.mock', 'es5shim/es5-shim'], function (DoaClass,
         });
 
         it('Check that the two instances are differents.', function () {
-            expect(Instance.class.paramOnConstruct).toBe('test on construct');
-            expect(InstanceTwo.class.paramOnConstruct).toBe('test on other construct');
+            expect(Instance.blueprint.paramOnConstruct).toBe('test on construct');
+            expect(InstanceTwo.blueprint.paramOnConstruct).toBe('test on other construct');
 
             expect(Instance !== InstanceTwo).toBe(true);
         });

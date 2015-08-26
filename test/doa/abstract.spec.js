@@ -15,10 +15,10 @@ define(['doa/class', 'doa/interface', 'test/class.mock', 'test/abstract.mock', '
         });
 
         it('Check object parent acessor.', function () {
-            expect(MockInstance.class.parent.abstract_param).toBeUndefined();
+            expect(MockInstance.blueprint.parent.abstract_param).toBeUndefined();
             MockInstance.setAbstractParam('parent param');
 
-            expect(MockInstance.class.parent.abstract_param).toBe('parent param');
+            expect(MockInstance.blueprint.parent.abstract_param).toBe('parent param');
             expect(MockInstance.getAbstractParam()).toBe('parent param');
         });
 
@@ -35,7 +35,7 @@ define(['doa/class', 'doa/interface', 'test/class.mock', 'test/abstract.mock', '
             var MockInstanceTwo = new MockConstructor();
             MockInstance.setAbstractParam('parent param second time');
 
-            expect(MockInstanceTwo.class.parent.abstract_param).toBeUndefined();
+            expect(MockInstanceTwo.blueprint.parent.abstract_param).toBeUndefined();
             expect(MockInstance.getAbstractParam()).toBe('parent param second time');
         });
     });

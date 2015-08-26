@@ -20,7 +20,7 @@ define('doa/function', function () {
 
         parseFunction: function (object, proto, property_name) {
             if (-1 === this.keywords.indexOf(property_name) && 'function' === typeof proto[property_name]) {
-                this.bindFunction(object, object.class, property_name);
+                this.bindFunction(object, object.blueprint, property_name);
             }
         }
     };

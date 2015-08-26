@@ -4,7 +4,7 @@ define('doa/abstract', ['doa/function'], function (doa_function) {
     return {
         extendAbstract: function (object, proto, property_name) {
             if ('function' === typeof proto[property_name] && !object.hasOwnProperty(property_name)) {
-                doa_function.bindFunction(object, object.class.parent, property_name);
+                doa_function.bindFunction(object, object.blueprint.parent, property_name);
             }
         },
 
